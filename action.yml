@@ -29,6 +29,9 @@ inputs:
   docker_compose_down:
     description: Execute docker compose-down ("true" or "false").
     default: 'false'
+  github_token:
+    description: Private GitHub token used for logging into private repository.
+    required: true
 runs:
   using: docker
   image: Dockerfile
@@ -41,3 +44,4 @@ runs:
     DOCKER_COMPOSE_PREFIX: ${{ inputs.docker_compose_prefix }}
     USE_DOCKER_STACK: ${{ inputs.use_stack }}
     DOCKER_COMPOSE_DOWN: ${{ inputs.docker_compose_down }}
+    GITHUB_TOKEN: ${{ inputs.github_token }}
