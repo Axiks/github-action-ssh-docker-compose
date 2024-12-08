@@ -18,7 +18,7 @@ eval `ssh-agent -s`
 REPO_NAME=${GITHUB_REPOSITORY}
 GITHUB_TOKEN=${GITHUB_TOKEN}  
 
-git_clone_args = "git clone https://oauth2:${GITHUB_TOKEN}@github.com/${REPO_NAME}.git";
+git_clone_args = "git clone https://oauth2:${GITHUB_TOKEN}@github.com/${REPO_NAME}.git"
 log git_clone_args
 
 remote_command="set -e ; log() { echo '>> [remote]' \$@ ; } ;  log 'Clone repository...' ; git clone https://oauth2:${GITHUB_TOKEN}@github.com/${REPO_NAME}.git; log 'Launching docker compose...' ; cd \"\$HOME/\$REPO_NAME\" ; docker compose -f \"$DOCKER_COMPOSE_FILENAME\" -p \"$DOCKER_COMPOSE_PREFIX\" up --remove-orphans --build; log 'Launch!'"
