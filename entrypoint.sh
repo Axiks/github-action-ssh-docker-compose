@@ -1,6 +1,9 @@
 #!/usb/bin/env bash
 set -e
 
+pwd
+ls
+
 log() {
   echo ">> [local]" $@
 }
