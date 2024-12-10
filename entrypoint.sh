@@ -48,7 +48,7 @@ remote_command+="cp \$HOME/lumi-config/.env .env ; "
 remote_command+="cp \$HOME/lumi-config/appsettings.Docker-Production.json Vanilla.Common/appsettings.Docker-Production.json ; "
 remote_command+="docker compose stop ; "
 remote_command+="log 'Launching docker compose...' ; "
-remote_command+="docker compose up -f \"$DOCKER_COMPOSE_FILENAME\" -p \"$DOCKER_COMPOSE_PREFIX\" --remove-orphans --build --force-recreate ; "
+remote_command+="docker compose -f \"$DOCKER_COMPOSE_FILENAME\" -p \"$DOCKER_COMPOSE_PREFIX\" up --remove-orphans --build --force-recreate ; "
 
 # echo "$remote_command" >foo.sh
 
