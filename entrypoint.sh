@@ -28,7 +28,7 @@ FOLDER_NAME="${REPO_NAME##*/}"
 
 # echo $FOLDER_NAME
 
-GITHUB_TOKEN_ENCODE=$(python3 tokenEncode.py "$GITHUB_TOKEN")
+GITHUB_TOKEN_ENCODE=$(python3 /tokenEncode.py "$GITHUB_TOKEN")
 
 git_url="https://oauth2:${GITHUB_TOKEN_ENCODE}@github.com/${REPO_NAME}.git"
 
