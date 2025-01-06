@@ -22,7 +22,7 @@ REPO_NAME=${GITHUB_REPOSITORY}
 GITHUB_TOKEN=${GITHUB_TOKEN}
 
 FOLDER_NAME="${REPO_NAME##*/}"
-FOLDER_NAME="${FOLDER_NAME}-${REPO_NAME}"
+FOLDER_NAME="${FOLDER_NAME}-${DOCKER_COMPOSE_PREFIX}"
 
 GITHUB_TOKEN_ENCODE=$(python3 /tokenEncode.py "$GITHUB_TOKEN")
 
@@ -36,15 +36,18 @@ path_to_env_file="\$HOME/lumi-config/$env_file_name"
 remote_command="set -e ; "
 remote_command+="log() { echo '>> [remote]' \$@ ; } ; "
 remote_command+="if [ -d "${FOLDER_NAME}" ] ; then "
-remote_command+=" cd \"\$HOME/${FOLDER_NAME}\" ; "
+remote_command+=" cd \"\$HOME/${FOLDER_NAME}/${REPO_NAME##*/}\" ; "
 remote_command+=" log 'Pull repository...' ; "
 remote_command+=" sleep 30 ; "
 remote_command+=" git pull $git_url ; "
 remote_command+=" git pull ; "
 remote_command+="else "
+remote_command+=" log 'Make dir' ; "
+remote_command+=" mkdir ${FOLDER_NAME} "
 remote_command+=" log 'Clone repository...' ; "
+remote_command+=" cd ${FOLDER_NAME} "
 remote_command+=" git clone -b $git_branch_name $git_url ; "
-remote_command+=" cd \"\$HOME/${FOLDER_NAME}\" ; "
+remote_command+=" cd \"\$HOME/${FOLDER_NAME}/${REPO_NAME##*/}\" ; "
 remote_command+="fi ; "
 remote_command+="cp $path_to_env_file $env_file_name ; "
 remote_command+="docker compose stop ; "
