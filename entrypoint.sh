@@ -51,7 +51,8 @@ remote_command+="docker compose stop ; "
 remote_command+="log 'Launching docker compose...' ; "
 remote_command+="docker compose -f \"$DOCKER_COMPOSE_FILENAME\" -p \"$DOCKER_COMPOSE_PREFIX\" --env-file $env_file_name up --remove-orphans --build --force-recreate ; "
 
-echo "$remote_command" >foo.sh
+# echo "$remote_command" >foo.sh
+echo $remote_command
 
 ssh-add <(echo "$SSH_PRIVATE_KEY")
 
