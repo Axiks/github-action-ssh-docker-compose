@@ -27,9 +27,9 @@ FOLDER_NAME="${FOLDER_NAME}-${REPO_NAME}"
 GITHUB_TOKEN_ENCODE=$(python3 /tokenEncode.py "$GITHUB_TOKEN")
 
 git_url="https://oauth2:${GITHUB_TOKEN_ENCODE}@github.com/${REPO_NAME}.git"
-git_branch_name= "${GITHUB_BRANCH_NAME}" #"make-aspire"
+git_branch_name="${GITHUB_BRANCH_NAME}" #"make-aspire"
 
-env_file_name= "${$ENV_FILE_NAME}" #".env"
+env_file_name="${$ENV_FILE_NAME}" #".env"
 path_to_env_file="\$HOME/lumi-config/$env_file_name"
 
 
