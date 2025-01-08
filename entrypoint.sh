@@ -50,7 +50,7 @@ remote_command+=" git clone -b $git_branch_name $git_url ; "
 remote_command+=" cd \"\$HOME/${FOLDER_NAME}/${REPO_NAME##*/}\" ; "
 remote_command+="fi ; "
 remote_command+="cp $path_to_env_file $env_file_name ; "
-remote_command+="docker compose stop ; "
+remote_command+="docker compose -f \"$DOCKER_COMPOSE_FILENAME\" -p \"$DOCKER_COMPOSE_PREFIX\" --env-file $env_file_name stop ; "
 remote_command+="log 'Launching docker compose...' ; "
 remote_command+="docker compose -f \"$DOCKER_COMPOSE_FILENAME\" -p \"$DOCKER_COMPOSE_PREFIX\" --env-file $env_file_name up --remove-orphans --build --force-recreate ; "
 
